@@ -1,5 +1,5 @@
 var appUser = angular.module('userPostApp', []);
-appUser.controller("userPostCtrl", function($scope,$http,$window,$interval){
+appUser.controller("userPostCtrl", function($scope,$http,$window,$interval,$timeout){
     $scope.user;
     $scope.newcomment = {};
     $scope.newpost='';
@@ -10,17 +10,17 @@ appUser.controller("userPostCtrl", function($scope,$http,$window,$interval){
     $scope.newtemperature='';
     $scope.isPostAvailable=false;
     $scope.allPost={};
-    $scope.url='https://localhost:8080/userPost/api/postComments';
+    $scope.url='https://localhost:8080/userPost/api/';
 
     /*$window.onload = function() {
-        $http.get("https://localhost:8080/userPost/api/getPostsOfAllUsers")
+        $http.get($scope.url+'getPostsOfAllUsers')
             .then(function(response) {
                 $scope.allPost = response.data;
             });
     };
 
     $scope.callAtTimeout =function() {
-        $http.get("https://localhost:8080/userPost/api/getPostsOfAllUsers")
+        $http.get($scope.url+'getPostsOfAllUsers')
             .then(function(response) {
                 $scope.allPost = response.data;
             });
@@ -40,7 +40,7 @@ appUser.controller("userPostCtrl", function($scope,$http,$window,$interval){
                     "comment": $scope.newcomment[key].comment
                 }]
             }
-            var res = $http.post($scope.url, post);
+            var res = $http.post($scope.url+'postComments', post);
             res.success(function (data, status, headers, config) {
                 $scope.user.post = data;
                 alert("Comments saved succesfully");
@@ -72,7 +72,7 @@ appUser.controller("userPostCtrl", function($scope,$http,$window,$interval){
                     "temperature": $scope.newtemperature
                 }]
             }
-         var res = $http.post($scope.url, $scope.user);
+         var res = $http.post($scope.url+'postUserSubmission', $scope.user);
             res.success(function (data, status, headers, config) {
                 $scope.user = data;
                 alert("Post saved succesfully");
