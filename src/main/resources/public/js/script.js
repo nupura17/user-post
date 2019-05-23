@@ -16,11 +16,7 @@ appUser.controller("userPostCtrl", function($scope,$http){
 
     $scope.newcomment = {};
     $scope.postComment = function(key, postId){
-        alert('comment ' + $scope.newcomment[key].comment);
-        alert('post id  ' + postId);
         if ($scope.newcomment[key].comment !== null && $scope.newcomment[key].comment !== undefined) {
-            //alert('post id' + postId);
-            //alert('comment ' + $scope.newcomment[key].comment);
             $scope.user.posts[key].comments.push($scope.newcomment[key]);
             var post = {
                 "postId": postId,
@@ -63,8 +59,6 @@ appUser.controller("userPostCtrl", function($scope,$http){
          var res = $http.post('https://localhost:8080/userPost/api/postUserSubmission', $scope.user);
             res.success(function (data, status, headers, config) {
                 $scope.user = data;
-                alert(data.posts[0].postId);
-                alert($scope.user.posts[0].postId);
                 alert("Post saved succesfully");
             });
             res.error(function (data, status, headers, config) {
@@ -87,5 +81,6 @@ appUser.controller("userPostCtrl", function($scope,$http){
         $scope.newlongitude='';
         $scope.newpost ='';
         $scope.newtemperature='';
+        $scope.newcity='';
     }
 });
