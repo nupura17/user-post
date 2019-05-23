@@ -16,7 +16,7 @@
 <div class="form-group">
     <label for="newuser" class="col-sm-2 control-label">Name</label>
     <div class="col-sm-3">
-    <input type="text"  ng-model="newuser"  class="form-control" id="newuser" placeholder="User Name"/>
+    <input type="text"  ng-model="newuser"  class="form-control" id="newuser" placeholder="User Name" ng-required=""/>
     </div>
 </div>
 <div class="form-group">
@@ -57,25 +57,24 @@
         </div>
     </div>
 
-    <div class="container pad-top">
+    <div class="container pad-top" ng-if="user.posts.length > 0">
         <table class="table shipwrecktable" >
             <tr>
                 <!-- <td><h3>Post's By {{user.userName}}</h3></td> -->
-                <td><h2>Post's from {{user.userName}}:</h2></td>
+                <td><h3>Post's from {{user.userName}}:</h3></td>
                 <td></td>
             </tr>
         </table>
         <table class="table shipwrecktable" ng-repeat="(key, post) in user.posts">
             <tr>
                 <!-- <td><h3>Post's By {{user.userName}}</h3></td> -->
-                <td colspan="3"><h3>{{post.title}}</h3></td>
-                <td></td>
+                <td colspan="4"><h3>Post:</h3><h2>{{post.title}}</h2></td>
+
             </tr>
             <tr>
                 <!-- <td><h3>Post's By {{user.userName}}</h3></td> -->
                 <td></td>
-                <td></td>
-                <td colspan="2">Posted from City :{{post.city}},Latitude:{{replace_chars(post.latitude)}},Longitude:{{post.longitude}},Temperature:{{post.temperature}}</td>
+                <td colspan="3">Posted from City :{{post.city}},Latitude:{{replace_chars(post.latitude)}},Longitude:{{post.longitude}},Temperature:{{post.temperature}}</td>
             </tr>
             <tr>
                 <td colspan="4"><ul>Comments :

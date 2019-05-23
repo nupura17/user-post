@@ -8,6 +8,7 @@ appUser.controller("userPostCtrl", function($scope,$http){
     $scope.newlatitude='';
     $scope.newlongitude='';
     $scope.newtemperature='';
+    $scope.isPostAvailable=false;
 
     $http.get("https://localhost:8080/userPost/api/getUserSubmission/Sunil")
         .then(function(response) {
@@ -16,6 +17,7 @@ appUser.controller("userPostCtrl", function($scope,$http){
 
     $scope.newcomment = {};
     $scope.postComment = function(key, postId){
+        $scope.isPostAvailable = true;
         if ($scope.newcomment[key].comment !== null && $scope.newcomment[key].comment !== undefined) {
             $scope.user.posts[key].comments.push($scope.newcomment[key]);
             var post = {
@@ -82,5 +84,6 @@ appUser.controller("userPostCtrl", function($scope,$http){
         $scope.newpost ='';
         $scope.newtemperature='';
         $scope.newcity='';
+        $scope.isPostAvailable = true;
     }
 });
