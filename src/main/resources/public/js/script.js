@@ -1,5 +1,5 @@
 var appUser = angular.module('userPostApp', []);
-appUser.controller("userPostCtrl", function($scope,$http,$window,$interval,$timeout){
+appUser.controller("userPostCtrl", function($scope,$http,$window,$interval){
     $scope.user;
     $scope.newcomment = {};
     $scope.newpost='';
@@ -10,6 +10,7 @@ appUser.controller("userPostCtrl", function($scope,$http,$window,$interval,$time
     $scope.newtemperature='';
     $scope.isPostAvailable=false;
     $scope.allPost={};
+    $scope.url='https://localhost:8080/userPost/api/postComments';
 
     /*$window.onload = function() {
         $http.get("https://localhost:8080/userPost/api/getPostsOfAllUsers")
@@ -39,7 +40,7 @@ appUser.controller("userPostCtrl", function($scope,$http,$window,$interval,$time
                     "comment": $scope.newcomment[key].comment
                 }]
             }
-            var res = $http.post('https://localhost:8080/userPost/api/postComments', post);
+            var res = $http.post($scope.url, post);
             res.success(function (data, status, headers, config) {
                 $scope.user.post = data;
                 alert("Comments saved succesfully");
@@ -71,7 +72,7 @@ appUser.controller("userPostCtrl", function($scope,$http,$window,$interval,$time
                     "temperature": $scope.newtemperature
                 }]
             }
-         var res = $http.post('https://localhost:8080/userPost/api/postUserSubmission', $scope.user);
+         var res = $http.post($scope.url, $scope.user);
             res.success(function (data, status, headers, config) {
                 $scope.user = data;
                 alert("Post saved succesfully");
