@@ -1,5 +1,5 @@
 var appUser = angular.module('userPostApp', []);
-appUser.controller("userPostCtrl", function($scope,$http){
+appUser.controller("userPostCtrl", function($scope,$http,$window,$interval,$timeout){
     $scope.user;
     $scope.newcomment = {};
     $scope.newpost='';
@@ -9,11 +9,24 @@ appUser.controller("userPostCtrl", function($scope,$http){
     $scope.newlongitude='';
     $scope.newtemperature='';
     $scope.isPostAvailable=false;
+    $scope.allPost={};
 
-    $http.get("https://localhost:8080/userPost/api/getUserSubmission/Sunil")
-        .then(function(response) {
-            $scope.user = response.data;
-        });
+    /*$window.onload = function() {
+        $http.get("https://localhost:8080/userPost/api/getPostsOfAllUsers")
+            .then(function(response) {
+                $scope.allPost = response.data;
+            });
+    };
+
+    $scope.callAtTimeout =function() {
+        $http.get("https://localhost:8080/userPost/api/getPostsOfAllUsers")
+            .then(function(response) {
+                $scope.allPost = response.data;
+            });
+    };
+
+
+    $interval(function(){ $scope.callAtTimeout(); }, 2000);*/
 
     $scope.newcomment = {};
     $scope.postComment = function(key, postId){

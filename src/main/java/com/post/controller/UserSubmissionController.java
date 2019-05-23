@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("userPost/api/")
 public class UserSubmissionController {
@@ -53,4 +55,19 @@ public class UserSubmissionController {
         }
         return responseEntity;
     }
+
+
+    /*@RequestMapping(value = "getPostsOfAllUsers", method = RequestMethod.GET,  produces = { "application/json" })
+    public ResponseEntity<List<Post>> getUserCommentsOnPost(){
+        ResponseEntity responseEntity;
+        try {
+            List<Post> existingPost = userPostCommentDao.getAllUsersPost();
+            responseEntity = new ResponseEntity<List<Post>>(existingPost, HttpStatus.OK);
+        }
+        catch(Exception e) {
+            logger.error("Error  fetching posts  ",e);
+            responseEntity=new ResponseEntity<User>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return responseEntity;
+    }*/
 }
